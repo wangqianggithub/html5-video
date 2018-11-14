@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>HTML5 </title>
+	<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+	<script src="jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+        $(document).ready(function() {
+            // 在这里写你的代码...
+            //alert("哈哈");
+            //var video = $('#videoPlay')[0];//这样返回的是DOM对象
+            var video = $('#videoPlay').get(0); //这样返回的是DOM对象
+            var videoJquery = $('#videoPlay'); //这样返回的是Jquery的对象
+            $(".btnPlay").on("click", function() { //播放暂停按钮的点击事件
+                //alert( $(this).text() );
+                //alert( video.paused );
+                if (video.paused) {
+                    video.play(); //播放
+                }
+                else {
+                    video.pause(); //暂停
+
+                }
+                return false;
+            });
+
+            //获得视频的时间总长度
+            videoJquery.on('loadedmetadata', function() {
+                //alert("a");
+                $('.duration').text(video.duration);
+            });
+
+            // 更新当前HTML5视频播放时间
+            videoJquery.on('timeupdate', function() {
+                $('.current').text(Math.round(video.currentTime) + "秒"); //Math.round()四舍五入取整
+                var currentPos = video.currentTime; //播放时间
+                var maxduration = video.duration; //视频总时间
+                var percentage = (100 * currentPos / maxduration).toFixed(2); //得到百分比.toFixed()小数点
+                $('.timeBar').css('width', percentage + '%');
+                $('.percentage').text(percentage);
+            });
+
+            //进度条拖动
+            var timeDrag = false; /* 初始默认的拖动状态为false*/
+            $('.progressBar').mousedown(function(e) {
+                //alert(e.pageX);
+                timeDrag = true;
+                updatebar(e.pageX);
+            });
+            //鼠标移动方法
+            $(document).mousemove(function(e) {
+                if (timeDrag) {
+                    updatebar(e.pageX);
+                }
+            });
+            //放开鼠标
+            $(document).mouseup(function(e) {
+                if (timeDrag) {
+                    timeDrag = false; //停止拖动，设置timeDrag为false
+                    updatebar(e.pageX);
+                }
+            });
+            //更新进度条
+            var updatebar = function(x) {
+                var progress = $('.progressBar');
+                var maxduration = video.duration;
+                var position = x / progress.width();
+                var percentage = 100 * position;  		//检查拖动进度条的范围是否合法
+                if (percentage > 100) {
+                    percentage = 100;
+                }
+                if (percentage < 0) {
+                    percentage = 0;
+                }
+                $('.timeBar').css('width', percentage + '%');
+                video.currentTime = maxduration * percentage / 100;
+            };
+        });
+	</script>
+	<style>
+		.progressBar
+		{
+			position: relative;
+			width: 100%;
+			height: 10px;
+			background-color: #000;
+		}
+		.timeBar
+		{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 0;
+			height: 100%;
+			background-color: #ccc;
+		}
+	</style>
+</head>
+<body>
+<!--<video src="b.mp4" width="320" height="240" controls="controls" autoplay="autoplay">
+	&lt;!&ndash; 中间写上文字，当不支持时，就会显示了 &ndash;&gt;
+	你的浏览器不支持video标签，升级吧骚年！
+</video>
+<br/>
+
+<br/>
+<video width="320" height="240" controls="controls">
+	&lt;!&ndash; video 元素允许多个 source 元素。source 元素可以链接不同的视频文件。浏览器将使用第一个可识别的格式 &ndash;&gt;
+	<source src="a.avi" type="video/avi">
+	<source src="b.mp4" type="video/mp4">
+	你的浏览器不支持video标签，升级吧骚年！
+</video>
+poster="/images/video2.gif" poster属性预览图图片
+<br/>-->
+<div style="width:640px;">
+	<video id='videoPlay' width='640' height='360'  onplay='' onpause='' >
+		<source src="b.mp4" type="video/mp4">
+		<track src="zimu.vtt" srclang="en" kind="subtitles" label="English" default>
+	</video>
+	<div class="control">
+		<a href="#" class="btnPlay">播放/暂停</a>
+	</div>
+	<div class="progressTime">
+		播放时间: <span class="current"></span>
+		视频总时间: <span class="duration"></span>
+		百分比: <span class="percentage"></span>
+	</div>
+	<div class="progressBar">
+		<div class="timeBar">11</div>
+	</div>
+</div>
+</body>
+</html>
