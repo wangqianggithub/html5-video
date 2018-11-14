@@ -2,9 +2,9 @@
 
 <html>
 <head>
-	<title>HTML5 </title>
-	<meta http-equiv=Content-Type content="text/html;charset=utf-8">
-	<script src="js/jquery-1.9.1.min.js"></script>
+    <title>HTML5 </title>
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <script src="js/jquery-1.9.1.min.js"></script>
 
 </head>
 <body>
@@ -13,8 +13,33 @@
 	muted,是否静音输出
 -->
 <video src="videos/a.mp4" width="520" height="340"
-	   poster="images/bg.jpg"
-	   muted
-	   controls></video>
+       poster="images/bg.jpg"
+       class="v1"
+       controls></video>
+
+
+<input type="button" value="播放" class="play"/>
+<input type="button" value="暂停" class="pause"/>
+
+<script>
+    var video = $('.v1').get(0);
+    $('.play').click(function (){
+        //console.log($('.v1'));
+        //console.log($('.v1').get(0));
+        //console.log(document.querySelector('.v1'));
+        $('.v1').get(0).play();
+    });
+    $('.pause').click(function (){
+        //console.log($('.v1'));
+        //console.log($('.v1').get(0));
+        //console.log(document.querySelector('.v1'));
+        $('.v1').get(0).pause();
+    });
+
+    //console.log(video.duration);
+    $('.v1').on('loadedmetadata',function (d){
+        console.log(video.duration);
+    });
+</script>
 </body>
 </html>
