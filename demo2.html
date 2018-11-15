@@ -4,7 +4,9 @@
 <head>
     <title>HTML5 </title>
     <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+	<link href="css/demo.css" rel="stylesheet" type="text/css" />
     <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/demo.js"></script>
 
 </head>
 <body>
@@ -20,26 +22,14 @@
 
 <input type="button" value="播放" class="play"/>
 <input type="button" value="暂停" class="pause"/>
+<input type="button" value="当前播放进度时间" class="currLocal"/>
+<br>
+<input type="button" value="快退2s" class="backPlay"/>
+<input type="button" value="快进2s" class="goPlay"/>
+<br>
 
-<script>
-    var video = $('.v1').get(0);
-    $('.play').click(function (){
-        //console.log($('.v1'));
-        //console.log($('.v1').get(0));
-        //console.log(document.querySelector('.v1'));
-        $('.v1').get(0).play();
-    });
-    $('.pause').click(function (){
-        //console.log($('.v1'));
-        //console.log($('.v1').get(0));
-        //console.log(document.querySelector('.v1'));
-        $('.v1').get(0).pause();
-    });
-
-    //console.log(video.duration);
-    $('.v1').on('loadedmetadata',function (d){
-        console.log(video.duration);
-    });
-</script>
+<div class="bar">
+	<div class="barGo"></div>
+</div>
 </body>
 </html>
