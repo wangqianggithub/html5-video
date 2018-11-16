@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Title</title>
+	<script src="js/tvp.player_v2.js" ></script>
+</head>
+<body>
+<div id="videoCon" class="video" style="width: 750px;height: 500px;border:1px solid #ccc;"></div>
+<script>
+    var video = new tvp.VideoInfo();
+    video.setVid("a0786gys2an");//视频vid
+    var player = new tvp.Player(750, 450);//视频高宽
+
+    player.addParam("autoplay","0");//是否自动播放，1为自动播放，0为不自动播放
+    player.addParam("wmode","opaque");
+    player.addParam("showend",0);
+    player.addParam("adplay",0);
+    player.addParam("wmode","transparent");
+    player.addParam("pic","http://wnmgg.com/src/assets/images/tez/1.jpg");				//默认图片地址
+    player.addParam("flashskin", "http://imgcache.qq.com/minivideo_v1/vd/res/skins/TencentPlayerMiniSkin.swf");//是否调用精简皮肤，不使用则删掉此行代码
+    player.setCurVideo(video);		//设置播放器初始化时加载的视频
+	player.write("videoCon");		//输出播放器
+</script>
+</body>
+</html>

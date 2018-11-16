@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Title</title>
+</head>
+<body>
+<div id="youkuplayer"style="width:580px;height:326px"></div>
+<input type="button" value="播放" class="vPlay" />
+<input type="button" value="暂停" class="vPause" />
+
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<!--<script type="text/javascript" src="js/ykuPlayer.js"></script>-->
+<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+
+<script type="text/javascript">
+
+var player = new YKU.Player('youkuplayer',{
+
+	styleid: '0',
+
+	client_id: 'beb95876155314ec',			//优酷视频云创建应用的client_id
+
+	vid: 'XMzkxNjMyOTMwMA',					//视频ID 视频ID获取方法
+
+	newPlayer: true,						// 是否使用新版播放器  
+
+	autoplay: false,						// 是否自动播放视频  
+
+	show_related: true,                		//播放完成是否显示相关视频
+});
+/*function playVideo(){
+	player.playVideo();
+}
+
+function pauseVideo(){
+	player.pauseVideo();
+}
+//播放
+$('.vPlay').on('click',function (){
+	playVideo();
+});
+
+//暂停
+$('.vPause').on('click',function (){
+	pauseVideo();
+});*/
+
+$('.vPlay').on('click',function (){
+    player.playVideo();
+});
+
+window.addEventListener('message',function(e){
+    var data = e.data;
+    switch (data.msg){
+        case "onPlayerStart":{
+            //onPlayerStart();
+            break;
+        }
+        case "onPlayEnd":{
+            //onPlayEnd();
+            break;
+        }
+        case 'onTimeUpdate':{
+            console.info(data.time);
+            break;
+        }
+        case "state":{
+			//playing或pause
+			//console.info(data.stateParam);
+            var state = data.stateParam;
+            console.info(state);
+            break;
+        }
+    }
+},false);
+
+</script>
+</body>
+</html>

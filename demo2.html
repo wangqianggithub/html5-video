@@ -14,10 +14,16 @@
 	poster，视频没播放时候，显示的封面
 	muted,是否静音输出
 -->
-<video src="videos/c.mp4" width="520" height="340"
-       poster="images/bg.jpg"
-       class="v1"
-       controls></video>
+<div>
+	<video src="videos/c.mp4" width="520" height="340"
+		   poster="images/bg.jpg"
+		   class="v1"
+		   controls></video>
+</div>
+<div class="volumes">
+	<span></span>
+</div>
+
 
 
 <input type="button" value="播放" class="play"/>
@@ -25,9 +31,17 @@
 <input type="button" value="音量-" class="volumeReduce"/>
 <input type="button" value="音量+" class="volumeAdd"/>
 <input type="button" value="当前播放进度时间" class="currLocal"/>
+<input type="button" value="当前音量" class="currVolume"/>
 <br>
 <input type="button" value="快退2s" class="backPlay"/>
 <input type="button" value="快进2s" class="goPlay"/>
+<select class="seleSpeed">
+	<option>播放速度</option>
+	<option>1</option>
+	<option>2</option>
+	<option>4</option>
+	<option>8</option>
+</select>
 <br>
 
 <div class="bar">

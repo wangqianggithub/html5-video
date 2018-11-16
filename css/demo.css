@@ -1,7 +1,8 @@
 
 .bar{height: 20px;width: 500px;border:1px solid #ccc;position: relative;}
 .barGo{height: 20px;width: 40px;position: absolute;top:0px;left:0px;background: #0c5460;cursor:pointer;}
-
+.volumes{position: absolute;top:50px;left:600px;width: 30px;height: 200px;border:1px solid #ccc;overflow: hidden;}
+.volumes span{display: block;position: absolute;bottom:0px;left:0px;right:0px;background: yellowgreen;}
 
 
 
