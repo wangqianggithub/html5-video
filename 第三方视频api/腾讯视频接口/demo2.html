@@ -13,8 +13,7 @@
 <div id="mod_player"></div>
 <script>
     var video = new tvp.VideoInfo();
-    video.setVid("a0786gys2an");
-
+    video.setVid("a0786gys2an");									//视频ID
     var player =new tvp.Player();
     player.create({
         width:480,
@@ -23,17 +22,17 @@
         modId:"mod_player",
         autoplay:false,												//是否自动播放
         pic:'http://wnmgg.com/src/assets/images/tez/1.jpg',			//默认显示图片
-
         //视频结束配置的扩展
         vodFlashExtVars:{
             showend:0,
             favorite:0,
             searchbar:0,
-
         },
-        onwrite:function(){console.log("播放器显示完毕");},
 
-
+		//播放器显示回调
+        onwrite:function(){
+            console.log("播放器显示完毕");
+		},
 		//这种形式切换到精简模式不可以
         //flashskin:"http://imgcache.qq.com/minivideo_v1/vd/res/skins/TencentPlayerMiniSkin.swf",
     });
